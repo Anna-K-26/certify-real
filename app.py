@@ -16,7 +16,7 @@ DATASET_PATH = os.path.join(BASE_DIR, 'students.csv')
 os.makedirs('share_cache', exist_ok=True)
 os.makedirs('templates', exist_ok=True)
 
-CSV_FIELDS = ['id', 'total_tasks', 'avg_score', 'homework_completion', 'achievement', 'grade']
+CSV_FIELDS = ['id', 'total_tasks', 'avg_score', 'homework_completion', 'grade']
 
 def load_student_from_dataset(student_id):
     try:
@@ -31,7 +31,6 @@ def load_student_from_dataset(student_id):
                         'total_tasks': int(row.get('total_tasks', 0)),
                         'avg_score': int(row.get('avg_score', 0)),
                         'homework_completion': int(row.get('homework_completion', 0)),
-                        'achievement': row.get('achievement', 'Молодец!'),
                         'grade': int(row.get('grade', 5))
                     }
         return None
@@ -93,7 +92,6 @@ def add_student():
             'total_tasks': data.get('total_tasks', 0),
             'avg_score': data.get('avg_score', 0),
             'homework_completion': data.get('homework_completion', 0),
-            'achievement': data.get('achievement', 'Молодец!'),
             'grade': grade
         }
         
@@ -193,8 +191,7 @@ def generate_share_token():
             'grade': grade,
             'total_tasks': student_data['total_tasks'],
             'avg_score': student_data['avg_score'],
-            'homework_completion': student_data['homework_completion'],
-            'achievement': student_data['achievement']
+            'homework_completion': student_data['homework_completion']
         }
         
         share_token = str(uuid.uuid4())
